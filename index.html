@@ -175,7 +175,147 @@ border : none;
 
 
   
-  <script src="script.js"></script>
+  <script>
+    let a=[]
+let b=[]
+let fall= true
+let score=0
+
+const lost=document.querySelector('#lost');
+
+const scorevalue =document.querySelector(`#scorevalue`);
+
+const red =document.querySelector(`#red`);
+
+const blue =document.querySelector(`#blue`);
+
+const green =document.querySelector(`#green`);
+
+const yellow =document.querySelector(`#yellow`);
+let truth =true;
+function random()
+{
+return Math.round(Math.random()*3+1)
+ }; 
+
+function computerinput()
+{
+  b.push(random(1))
+}
+function lose(){
+  lost.style.display='block';
+}
+
+function off(){
+  userinput= ()=>{}
+}
+function on(){
+  userinput =(x)=>{
+    a.push(x)
+    flash(x)
+    check()
+  }
+}
+function flash(input){
+
+  switch (input) {
+    case 1:
+      red.style.backgroundColor = "darkred";
+
+
+      setTimeout(() => {
+        red.style.backgroundColor = 'red'; // Reset to original color
+      }, 400); 
+      break;
+    case 2:
+      blue.style.backgroundColor = "darkblue";
+
+      setTimeout(() => {
+        blue.style.backgroundColor = 'blue'; // Reset to original color
+      }, 400); 
+      break;
+    case 3:
+green.style.backgroundColor= "darkgreen";
+      
+setTimeout(() => {
+  green.style.backgroundColor = 'green'; // Reset to original color
+}, 400); 
+      break;
+    case 4:
+yellow.style.backgroundColor= "gold";
+
+      setTimeout(() => {
+        yellow.style.backgroundColor = 'yellow'; // Reset to original color
+      }, 400); 
+      break;
+    default:
+      return; // Do nothing if input is invalid
+  }
+};
+function check(){
+  lamo=a.length-1;
+  if (a[lamo]!==b[lamo]){
+   lose()
+    fall=false;
+  }
+  if((a.length==b.length)&(a[lamo]==b[lamo])){
+    console.log("you win");
+    fall=true;
+    scorevalue.innerHTML++;
+  
+   setTimeout(()=>{ a=[]
+    start()},1200)
+    
+}
+}
+
+function userinput(x)
+{
+  a.push(x)
+  flash(x)
+  check()
+};
+
+
+function start() {
+  off()
+  if(fall==true){
+  computerinput();
+  for (let i = 0; i < b.length; i++) {
+    setTimeout(() => flash(b[i]), 600*i );
+  }
+    on()
+}
+  else{
+    off()
+  }
+};
+function sstart(){
+  a=[]
+  b=[]
+  fall=true
+  scorevalue.innerHTML=0
+  on()
+  lost.style.display='none';
+  start()
+}
+function incrim(){
+score++
+  document.getElementById('scorevalue').onclick=function(){
+   document.getElementById.innerHTMl=score;
+ }
+}
+function off(){
+  userinput= ()=>{}
+}
+function on(){
+  userinput =(x)=>{
+    a.push(x)
+    flash(x)
+    check()
+  }
+}
+  </script>
 </body>
 
 </html>
